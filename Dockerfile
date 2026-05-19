@@ -1,13 +1,4 @@
-FROM python:3.11-slim AS builder
-
-# Install build dependencies and curl for uv installer
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential curl ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install uv
-RUN curl -fsSL https://astral.sh/uv/install.sh | sh
-ENV PATH="/root/.local/bin:${PATH}"
+FROM docker.io/astral/uv:python3.11-trixie AS builder
 
 WORKDIR /app
 
