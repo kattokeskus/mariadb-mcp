@@ -8,8 +8,24 @@ dependencies = [
     "asyncmy>=0.2.10",
     "fastmcp[websockets]==2.12.1",
     "google-genai>=1.15.0",
+    "numpy>=1.26",
     "openai>=1.78.1",
     "python-dotenv>=1.1.0",
+]
+
+[project.optional-dependencies]
+# Local HuggingFace embeddings (EMBEDDING_PROVIDER=huggingface). Pulls in PyTorch.
+huggingface = [
     "sentence-transformers>=4.1.0",
     "tokenizers==0.21.2",
+    "torch",
 ]
+
+# CPU-only PyTorch: the default PyPI wheels bundle ~3 GB of CUDA libraries.
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

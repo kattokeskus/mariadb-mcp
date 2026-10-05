@@ -1,12 +1,15 @@
 FROM docker.io/astral/uv:python3.11-trixie AS builder
 
+# Optional extras to install, e.g. --build-arg EXTRAS=huggingface
+ARG EXTRAS=""
+
 WORKDIR /app
 
 # Copy project files
 COPY . .
 
 # Install project dependencies into a local venv
-RUN uv sync --no-dev
+RUN uv sync --no-dev ${EXTRAS:+--extra $EXTRAS}
 
 FROM python:3.11-slim
 
