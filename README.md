@@ -112,6 +112,8 @@ The MCP MariaDB Server provides **optional** embedding and vector store capabili
 - `OPENAI_API_KEY`: Required if using OpenAI embeddings
 - `GEMINI_API_KEY`: Required if using Gemini embeddings
 - `HF_MODEL`: Required if using HuggingFace embeddings (e.g., "intfloat/multilingual-e5-large-instruct" or "BAAI/bge-m3")
+
+HuggingFace support is an optional extra because it pulls in PyTorch. Install it with `uv sync --extra huggingface`, or build the Docker image with `--build-arg EXTRAS=huggingface`.
 ### Model Selection
 
 - Default and allowed models are configurable in code (`DEFAULT_OPENAI_MODEL`, `ALLOWED_OPENAI_MODELS`)
